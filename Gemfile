@@ -55,3 +55,4 @@ end
 
 # DEVISE
 gem 'devise'
+gem 'rabl'
