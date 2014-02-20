@@ -10,7 +10,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     if @user.save
       respond_with(@user, :location => api_v1_user_path(@user))
     else
-      respond_with({:error => "Something is invalid." })
+      render_errors(@user)
     end
   end
 
