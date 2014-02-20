@@ -6,8 +6,8 @@ describe Api::V1::UsersController, :type => :request do
     { :user => {
               :first_name => "Matthew",
               :last_name  => "Duff",
-              :username   => "mattcantstop",
-              :email      => "matthewlduff@gmail.com",
+              :username   => "mattcantstop4",
+              :email      => "matthewlduff4@gmail.com",
               :password   => "encrypted"
       } }
     }

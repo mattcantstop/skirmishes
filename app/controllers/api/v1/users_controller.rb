@@ -8,7 +8,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def create
     @user = User.new(user_params)
     if @user.save
-      respond_with(@user, :location => api_v1_user_path(@user))
+      render 'users/show.json.rabl', :status => :created
     else
       render_errors(@user)
     end

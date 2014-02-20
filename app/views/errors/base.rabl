@@ -1,2 +1,2 @@
 object @error => 'error'
-attributes :status, :code, :message
+attributes :errors, :status
