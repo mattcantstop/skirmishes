@@ -24,7 +24,7 @@ describe Api::V1::UsersController, :type => :request do
   context "creating a user" do
     it "creates a user successfully with good params" do
       post :create, new_user
-      response.body.should eql(new_user.to_json)
+      response.status.should eql(201)
     end
   end
 
