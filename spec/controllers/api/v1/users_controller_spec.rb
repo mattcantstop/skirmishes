@@ -22,9 +22,17 @@ describe Api::V1::UsersController, :type => :request do
   end
 
   context "creating a user" do
-    it "creates a user successfully with good params" do
+
+    before do
       post :create, new_user
+    end
+
+    it "creates a user successfully with good params" do
       response.status.should eql(201)
+    end
+
+    it "has the correct attributes returned" do
+      JSON.parse(response.body).first.keys.include?("first_name").should be_true
     end
   end
 
