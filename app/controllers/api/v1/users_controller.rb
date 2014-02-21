@@ -2,13 +2,13 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def show
     @user = User.find(params[:id])
-    respond_with(@user, :location => api_v1_user_path(@user))
+    render 'users/show.rabl'
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      render 'users/show.json.rabl', :status => :created
+      render('users/show.rabl', object: @user)
     else
       render_errors(@user)
     end
