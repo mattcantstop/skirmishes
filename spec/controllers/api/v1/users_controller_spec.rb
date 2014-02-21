@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Api::V1::UsersController, :type => :request do
+  render_views
 
   let!(:new_user) {
     { :user => {
