@@ -12,6 +12,14 @@ describe Api::V1::UsersController, :type => :request do
               :password   => "encrypted"
       } }
     }
+  let!(:user_attributes) {
+    {
+      'first_name' => new_user[:user][:first_name],
+      'last_name'  => new_user[:user][:last_name],
+      'email'      => new_user[:user][:email],
+      'username'   => new_user[:user][:username]
+    }
+  }
   let!(:user) { FactoryGirl.create(:user) }
 
   context "showing a user" do
@@ -32,7 +40,7 @@ describe Api::V1::UsersController, :type => :request do
     end
 
     it "has the correct attributes returned" do
-      JSON.parse(response.body).first.keys.include?("first_name").should be_true
+      expect(JSON.parse(response.body)).to eq(User.new(user_attributes))
     end
   end
 
