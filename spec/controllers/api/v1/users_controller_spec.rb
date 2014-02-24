@@ -20,6 +20,14 @@ describe Api::V1::UsersController, :type => :request do
       'username'   => new_user[:user][:username]
     }
   }
+  let!(:updated_user_attributes) {
+    { :user => {
+      'first_name' => new_user[:user][:first_name] + "Updated",
+      'last_name'  => new_user[:user][:last_name],
+      'email'      => new_user[:user][:email],
+      'username'   => new_user[:user][:username]
+    } }
+  }
   let!(:user) { FactoryGirl.create(:user) }
 
   context "showing a user" do
@@ -41,7 +49,14 @@ describe Api::V1::UsersController, :type => :request do
 
     it "has the correct attributes returned" do
       assert_equal ["id", "first_name","last_name","email","username"], JSON.parse(response.body)["user"].keys
-      #expect(JSON.parse(response.body)).to eq(User.new(user_attributes))
+    end
+  end
+
+  context "updating a user" do
+    before { put :update, updated_user_attributes }
+
+    it "updates when valid parameters are passed" do
+      response.status.should eq(200)
     end
   end
 
