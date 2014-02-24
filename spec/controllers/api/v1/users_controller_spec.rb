@@ -40,7 +40,8 @@ describe Api::V1::UsersController, :type => :request do
     end
 
     it "has the correct attributes returned" do
-      expect(JSON.parse(response.body)).to eq(User.new(user_attributes))
+      assert_equal ["id", "first_name","last_name","email","username"], JSON.parse(response.body)["user"].keys
+      #expect(JSON.parse(response.body)).to eq(User.new(user_attributes))
     end
   end
 
