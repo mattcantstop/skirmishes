@@ -17,7 +17,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def update
-    if @user.update_attributes
+    if @user.update_attributes(user_params)
       render('users/show.rabl', object: @user)
     else
       render_errors(@user)

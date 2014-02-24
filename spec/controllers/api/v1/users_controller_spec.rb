@@ -3,6 +3,16 @@ require 'spec_helper'
 describe Api::V1::UsersController, :type => :request do
   render_views
 
+  let!(:existing_user) { FactoryGirl.create(:user) }
+
+  let!(:user) { User.new(
+    :first_name => "Matthew",
+    :last_name  =>  "Duff",
+    :password   => "encrypted",
+    :username   => "mattcantstop#{Random.rand(11000)}",
+    :email      => "matthewlduff#{Random.rand(10000)}@gmail.com"
+  )}
+
   let!(:new_user) {
     { :user => {
         :first_name => "Matthew",
@@ -13,6 +23,7 @@ describe Api::V1::UsersController, :type => :request do
         }
       }
     }
+
   let!(:user_attributes) {
     {
       'first_name' => new_user[:user][:first_name],
@@ -21,25 +32,23 @@ describe Api::V1::UsersController, :type => :request do
       'username'   => new_user[:user][:username]
     }
   }
-  let!(:updated_user_attributes) {
+
+  let!(:updated_user) {
     { :user => {
-        'first_name' => new_user[:user][:first_name] + "Updated",
-        'last_name'  => new_user[:user][:last_name],
-        'email'      => new_user[:user][:email],
-        'username'   => new_user[:user][:username]
-        }
+        'id'        => existing_user.id,
+        'last_name' => user.last_name + " Updated"
       }
     }
-  let!(:user) { FactoryGirl.create(:user) }
+  }
 
-  context "showing a user" do
+  context "#show" do
     it "returns a user when credentials are valid" do
-      get :show, :id => user.id, format: :json
+      get :show, :id => existing_user.id, format: :json
       expect(response.status).to eq 200
     end
   end
 
-  context "creating a user" do
+  context "#create" do
 
     before { post :create, new_user }
 
@@ -52,9 +61,9 @@ describe Api::V1::UsersController, :type => :request do
     end
   end
 
-  context "updating a user" do
+  context "#update" do
 
-    before { put :update, updated_user_attributes }
+    before { put :update, :id => existing_user.id, :user => updated_user }
 
     it "updates when valid parameters are passed" do
       response.status.should eq(200)
