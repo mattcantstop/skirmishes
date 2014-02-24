@@ -5,12 +5,13 @@ describe Api::V1::UsersController, :type => :request do
 
   let!(:new_user) {
     { :user => {
-              :first_name => "Matthew",
-              :last_name  => "Duff",
-              :username   => "mattcantstop#{Random.rand(11000)}",
-              :email      => "matthewlduff#{Random.rand(10000)}@gmail.com",
-              :password   => "encrypted"
-      } }
+        :first_name => "Matthew",
+        :last_name  => "Duff",
+        :username   => "mattcantstop#{Random.rand(11000)}",
+        :email      => "matthewlduff#{Random.rand(10000)}@gmail.com",
+        :password   => "encrypted"
+        }
+      }
     }
   let!(:user_attributes) {
     {
@@ -22,12 +23,13 @@ describe Api::V1::UsersController, :type => :request do
   }
   let!(:updated_user_attributes) {
     { :user => {
-      'first_name' => new_user[:user][:first_name] + "Updated",
-      'last_name'  => new_user[:user][:last_name],
-      'email'      => new_user[:user][:email],
-      'username'   => new_user[:user][:username]
-    } }
-  }
+        'first_name' => new_user[:user][:first_name] + "Updated",
+        'last_name'  => new_user[:user][:last_name],
+        'email'      => new_user[:user][:email],
+        'username'   => new_user[:user][:username]
+        }
+      }
+    }
   let!(:user) { FactoryGirl.create(:user) }
 
   context "showing a user" do
@@ -39,9 +41,7 @@ describe Api::V1::UsersController, :type => :request do
 
   context "creating a user" do
 
-    before do
-      post :create, new_user
-    end
+    before { post :create, new_user }
 
     it "creates a user successfully with good params" do
       response.status.should eql(201)
@@ -53,11 +53,13 @@ describe Api::V1::UsersController, :type => :request do
   end
 
   context "updating a user" do
+
     before { put :update, updated_user_attributes }
 
     it "updates when valid parameters are passed" do
       response.status.should eq(200)
     end
+
   end
 
 end
