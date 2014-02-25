@@ -34,10 +34,9 @@ describe Api::V1::UsersController, :type => :request do
   }
 
   let!(:updated_user) {
-    { :user => {
-        'id'        => existing_user.id,
-        'last_name' => user.last_name + " Updated"
-      }
+    {
+      'id'        => existing_user.id,
+      'last_name' => "Updated"
     }
   }
 
@@ -67,6 +66,10 @@ describe Api::V1::UsersController, :type => :request do
 
     it "updates when valid parameters are passed" do
       response.status.should eq(200)
+    end
+
+    it "updates the expected attributes" do
+      JSON.parse(response.body)["user"]["last_name"].should eq(updated_user["last_name"])
     end
 
   end
