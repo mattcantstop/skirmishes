@@ -39,6 +39,11 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def find_user
     @user = User.find(params[:id])
+    if @user.is_disabled?
+      respond_with(status: 404)
+    else
+      @user
+    end
   end
 
   def user_params
