@@ -4,7 +4,9 @@ class Api::V1::UsersController < Api::V1::BaseController
 
 
   def show
-    render 'users/show.rabl'
+    if !@user.is_disabled?
+      render 'users/show.rabl'
+    end
   end
 
   def create
@@ -19,6 +21,15 @@ class Api::V1::UsersController < Api::V1::BaseController
   def update
     if @user.update_attributes(user_params)
       render('users/show.rabl', object: @user)
+    else
+      render_errors(@user)
+    end
+  end
+
+  def destroy
+    @user.is_disabled = true
+    if @user.save
+      head :no_content
     else
       render_errors(@user)
     end

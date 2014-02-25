@@ -74,4 +74,13 @@ describe Api::V1::UsersController, :type => :request do
 
   end
 
+  context "#delete" do
+    before { delete :destroy, :id => existing_user.id }
+
+    it "changes the status of the user to disabled" do
+      response.status.should eq(204)
+    end
+
+  end
+
 end
