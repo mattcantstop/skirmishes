@@ -40,7 +40,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def find_user
     @user = User.find(params[:id])
     if @user.is_disabled?
-      respond_with(status: 404)
+      respond_with(@user, status: 404, body: "Not Found")
     else
       @user
     end

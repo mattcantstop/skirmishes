@@ -40,10 +40,18 @@ describe Api::V1::UsersController, :type => :request do
     }
   }
 
+  let!(:disabled_user) { FactoryGirl.create(:user, is_disabled: true, email: "disabledemail@gmail.com", username: "disabledusername") }
+
   context "#show" do
+
     it "returns a user when credentials are valid" do
       get :show, :id => existing_user.id, format: :json
       expect(response.status).to eq 200
+    end
+
+    it "returns status of 404 for disabled user" do
+      get :show, :id => disabled_user.id
+      response.status.should eq(404)
     end
   end
 
