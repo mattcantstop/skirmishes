@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227142859) do
+ActiveRecord::Schema.define(version: 20140227144354) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140227142859) do
     t.datetime "ending_date"
     t.integer  "ending_score"
     t.string   "booty"
-    t.boolean  "private"
+    t.boolean  "is_private"
     t.boolean  "open_registration"
     t.boolean  "is_complete",       default: false
     t.integer  "winner_id"
