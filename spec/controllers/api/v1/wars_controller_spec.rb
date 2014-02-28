@@ -9,7 +9,7 @@ describe Api::V1::WarsController, :type => :request do
   context "#show" do
 
     it "returns 200 status when war is found" do
-      get :show, :id => war.id
+      get :show, :id => war.id, :user_id => user.id
       expect(response.status).to eq(200)
     end
 
