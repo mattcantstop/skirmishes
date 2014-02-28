@@ -5,6 +5,16 @@ describe Api::V1::WarsController, :type => :request do
 
   let!(:user) { FactoryGirl.create(:user) }
   let!(:war)  { FactoryGirl.create(:war)  }
+  let!(:new_war) {
+    {
+      :name              => "Horse",
+      :is_private        => false,
+      :open_registration => false,
+      :ending_score      => 10,
+      :booty             => "$10",
+      :owner_id          => user.id
+    }
+  }
 
   context "#show" do
 
@@ -13,6 +23,15 @@ describe Api::V1::WarsController, :type => :request do
       expect(response.status).to eq(200)
       puts @war
     end
-
   end
+
+  context "#create" do
+
+    before { post :create, :user_id => user.id, :war => new_war }
+
+    it "returns a 201 status when a war is created" do
+      expect(response.status).to eq(201)
+    end
+  end
+
 end
