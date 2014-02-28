@@ -2,7 +2,6 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   before_filter :find_user, :only => [:show, :update, :destroy]
 
-
   def show
     if !@user.is_disabled?
       render 'users/show.rabl'
