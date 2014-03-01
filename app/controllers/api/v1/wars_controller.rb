@@ -13,6 +13,10 @@ class Api::V1::WarsController < Api::V1::BaseController
     end
   end
 
+  def update
+
+  end
+
   private
 
   def set_war

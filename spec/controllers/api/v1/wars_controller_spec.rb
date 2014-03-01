@@ -15,6 +15,11 @@ describe Api::V1::WarsController, :type => :request do
       :owner_id          => user.id
     }
   }
+  let!(:updated_war) {
+    {
+      :name => "Updated Warz"
+    }
+  }
 
   context "#show" do
 
@@ -36,10 +41,10 @@ describe Api::V1::WarsController, :type => :request do
 
   context "#update" do
 
-    before { put :update, :user_id => user.id, :war_id => war.id, { :war => { :name => "Updated War" } } }
+    before { put :update, :id => war.id, :user_id => user.id, :war => updated_war }
 
     it "updated the name on war update" do
-      expect(response.status.to eq(200)
+      expect(response.status).to eq(200)
     end
 
   end
