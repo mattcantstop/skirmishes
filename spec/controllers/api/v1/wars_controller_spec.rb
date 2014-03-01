@@ -48,7 +48,6 @@ describe Api::V1::WarsController, :type => :request do
     end
 
     it "has an updated name" do
-      binding.pry
       JSON.parse(response.body)["war"]["name"].should eq(updated_war[:name])
     end
 
