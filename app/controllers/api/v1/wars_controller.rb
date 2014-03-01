@@ -14,7 +14,8 @@ class Api::V1::WarsController < Api::V1::BaseController
   end
 
   def update
-
+    @war.update_attributes(war_params)
+    render 'wars/show.rabl'
   end
 
   private

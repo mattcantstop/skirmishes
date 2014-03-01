@@ -43,8 +43,13 @@ describe Api::V1::WarsController, :type => :request do
 
     before { put :update, :id => war.id, :user_id => user.id, :war => updated_war }
 
-    it "updated the name on war update" do
+    it "returns a 200 response" do
       expect(response.status).to eq(200)
+    end
+
+    it "has an updated name" do
+      binding.pry
+      JSON.parse(response.body)["war"]["name"].should eq(updated_war[:name])
     end
 
   end
