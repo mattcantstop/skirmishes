@@ -34,4 +34,14 @@ describe Api::V1::WarsController, :type => :request do
     end
   end
 
+  context "#update" do
+
+    before { put :update, :user_id => user.id, :war_id => war.id, { :war => { :name => "Updated War" } } }
+
+    it "updated the name on war update" do
+      expect(response.status.to eq(200)
+    end
+
+  end
+
 end
