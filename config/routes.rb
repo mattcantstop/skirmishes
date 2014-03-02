@@ -8,4 +8,6 @@ Skirmishes::Application.routes.draw do
     end
   end
 
+  post "/signin", to: "sessions#create"
+
 end
