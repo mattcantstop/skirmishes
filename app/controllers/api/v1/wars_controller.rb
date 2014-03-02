@@ -18,6 +18,15 @@ class Api::V1::WarsController < Api::V1::BaseController
     render 'wars/show.rabl'
   end
 
+  def destroy
+    @war.is_disabled = true
+    if @war.save
+      head :no_content
+    else
+      render_errors(@war)
+    end
+  end
+
   private
 
   def set_war

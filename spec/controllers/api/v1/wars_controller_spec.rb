@@ -21,6 +21,12 @@ describe Api::V1::WarsController, :type => :request do
     }
   }
 
+  let!(:deleted_war) { 
+    {
+      :is_disabled => true
+    }
+  }
+
   context "#show" do
 
     it "returns 200 status when war is found" do
@@ -55,7 +61,7 @@ describe Api::V1::WarsController, :type => :request do
 
   context "#destroy" do
 
-    before { delete :destroy, :id => war.id, :user_id => user.id }
+    before { delete :destroy, :id => war.id, :user_id => user.id, :war => deleted_war }
 
     it "should return a 204 status on delete" do
       expect(response.status).to eq(204)
