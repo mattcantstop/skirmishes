@@ -53,4 +53,14 @@ describe Api::V1::WarsController, :type => :request do
 
   end
 
+  context "#destroy" do
+
+    before { delete :destroy, :id => war.id, :user_id => user.id }
+
+    it "should return a 204 status on delete" do
+      expect(response.status).to eq(204)
+    end
+
+  end
+
 end
