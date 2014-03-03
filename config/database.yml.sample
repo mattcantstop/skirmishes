@@ -1,0 +1,24 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: skirmishes_development
+  pool: 5
+  username: DUFF
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: skirmishes_test
+  pool: 5
+  username: DUFF
+  password:
+  min_messages: warning
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: skirmishes_production
+  pool: 5
+  username: DUFF
+  password:
