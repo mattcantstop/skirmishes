@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_save :ensure_authentication_token
+
   validates :username, :uniqueness => { :case_sensitive => false }
 
   attr_accessor :login
@@ -33,6 +35,13 @@ class User < ActiveRecord::Base
 
   def login
     @login || self.username || self.email
+  end
+
+  private
+
+  def ensure_authentication_token
+    @token = generate_token
+    self.authentication_token = @token
   end
 
 end
