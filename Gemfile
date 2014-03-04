@@ -34,6 +34,7 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'rspec-pride'
   gem 'factory_girl_rails'
 end
 
