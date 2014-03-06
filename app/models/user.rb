@@ -31,10 +31,6 @@ class User < ActiveRecord::Base
   # Instance Methods
   ###
 
-  def login=(login)
-    @login = login
-  end
-
   def login
     @login || self.username || self.email
   end
