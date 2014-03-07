@@ -55,3 +55,4 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'rabl'
+gem 'bcrypt-ruby'
