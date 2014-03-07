@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include Tokenable
 
+  has_secure_password
   before_save :ensure_authentication_token
 
   validates :username, :uniqueness => { :case_sensitive => false }
