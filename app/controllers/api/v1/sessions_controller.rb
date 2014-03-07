@@ -1,4 +1,4 @@
-class Api::V1::SessionsController < Devise::SessionsController
+class Api::V1::SessionsController < ApplicationController
 
   def create
     login = params[:username] || params[:email]

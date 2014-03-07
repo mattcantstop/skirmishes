@@ -54,6 +54,4 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# DEVISE
-gem 'devise'
 gem 'rabl'
