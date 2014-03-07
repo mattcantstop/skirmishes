@@ -3,10 +3,8 @@ class Api::V1::SessionsController < ApplicationController
   before_filter :find_user
 
   def create
-    binding.pry
-    user = User.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
-      render 'war/show.rabl'
+    if @user && @user.authenticate(params[:password])
+      render 'users/show.rabl'
     else
       render_errors(@user)
     end
