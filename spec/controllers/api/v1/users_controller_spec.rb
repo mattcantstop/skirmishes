@@ -19,7 +19,8 @@ describe Api::V1::UsersController, :type => :request do
         :last_name  => "Duff",
         :username   => "mattcantstop#{Random.rand(11000)}",
         :email      => "matthewlduff#{Random.rand(10000)}@gmail.com",
-        :password   => "encrypted"
+        :password   => "encrypted",
+        :password_confirmation => "encrypted"
         }
       }
     }
@@ -60,11 +61,12 @@ describe Api::V1::UsersController, :type => :request do
     before { post :create, new_user }
 
     it "creates a user successfully with good params" do
+binding.pry
       response.status.should eql(201)
     end
 
     it "has the correct attributes returned" do
-      assert_equal ["id", "first_name","last_name","email","username"], JSON.parse(response.body)["user"].keys
+      assert_equal ["id", "first_name","last_name","email","username","authentication_token"], JSON.parse(response.body)["user"].keys
     end
   end
 
