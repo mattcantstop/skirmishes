@@ -13,11 +13,68 @@ Below is a quick overview of the BigSkirmish architecture:
 * `Wars` - The competition you have with yourself of other `users`.
 * `Battles` - Each "win" during the competition is counted as a `battle` (you may have won the `battle`, but you didn't win the `war`!).
 * `Participant` - a `user` involved in a `war`.
-* Follower - a `user` who follows a `war`.
-* Session - must be acquired to make authentication requests after
+* `Follower` - a `user` who follows a `war`.
+* *Session* - must be acquired to make authentication requests after
   passing username/email and password.
 
 Below each resource will be outlined, along with its API calls:
+
+## Session
+
+### Create Session
+
+#### Request
+
+URL Endpoint
+
+```
+POST /sessions/
+```
+
+URL Example
+
+```
+POST https://api.bigskirmish.com/sessions/
+```
+
+**Request** Body Example
+
+```json
+{
+  "username":"Heisenberg",
+  "password":"your_password"
+}
+```
+
+Body Required Parameters
+
+Field |  Description
+--- |  ---
+username OR email |  Either can be passed to identify the user
+password |  The password of the specific user that is having a session created
+
+**Response** Body Example
+
+```
+Status: 200
+```
+
+```json
+{
+  "user":{
+    "first_name":"Walter",
+    "last_name":"White",
+    "username":"Heisenberg",
+    "email":"remembermyname@example.com",
+    "is_disabled":false,
+    "authentication_token":"RANDOMSTRING"
+  }
+}
+```
+
+After the session has been created you use the `authentication_token` in subsequent requests to authenticate. If a request to any endpoint other than the sessions endpoint does not have the `authentication_token` value it will fail with a 401 response code.
+
+> TODO: Add API_KEY and move this to a header in the requests
 
 ## User
 
@@ -61,6 +118,25 @@ username |  Unique identifier for the user
 email |  must have standard email characters with an "@" symbol and a period preceded and followed by some other letters
 
 > Any fields described in the [Data Spec](/developer/api/data-spec/users.html) may optionally be included.
+
+**Response** Body Example
+
+```
+Status: 201
+```
+
+```json
+{
+  "user":{
+    "first_name":"Walter",
+    "last_name":"White",
+    "username":"Heisenberg",
+    "email":"remembermyname@example.com",
+    "is_disabled":false,
+    "authentication_token":"RANDOMSTRING"
+  }
+}
+```
 
 ## War
 
@@ -108,3 +184,24 @@ is_private |  Can non-participating users see this war? Boolean.
 open_registration |  Can anyone join this competition or must they be invited? Boolean.
 
 > Any fields described in the [Data Spec](/developer/api/data-spec/users.html) may optionally be included.
+
+**Response** Body Example
+
+```
+Status: 201
+```
+
+```json
+{
+  "war":{
+    "name":"Pie Eating Contest",
+    "has_end":true,
+    "ending_date":1394502906,
+    "ending_score":50,
+    "booty":"Winner gets a whole fat stack of quatloos",
+    "is_private":false,
+    "open_registration":false,
+    "is_disabled":false
+  }
+}
+```
