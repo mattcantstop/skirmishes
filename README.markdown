@@ -194,7 +194,7 @@ Status: 201
 ```json
 {
   "war":{
-    "name":"Pie Eating Contest",
+    "name":"Star Trek Pie Eating Contest",
     "has_end":true,
     "ending_date":1394502906,
     "ending_score":50,

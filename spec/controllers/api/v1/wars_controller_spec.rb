@@ -4,7 +4,7 @@ describe Api::V1::WarsController, :type => :request do
   render_views
 
   let!(:user) { FactoryGirl.create(:user) }
-  let!(:war)  { FactoryGirl.create(:war)  }
+  let!(:war)  { FactoryGirl.create(:war, :owner_id => user.id)  }
   let!(:new_war) {
     {
       :name              => "Horse",
