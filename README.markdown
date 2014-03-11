@@ -14,6 +14,8 @@ Below is a quick overview of the BigSkirmish architecture:
 * `Battles` - Each "win" during the competition is counted as a `battle` (you may have won the `battle`, but you didn't win the `war`!).
 * `Participant` - a `user` involved in a `war`.
 * Follower - a `user` who follows a `war`.
+* Session - must be acquired to make authentication requests after
+  passing username/email and password.
 
 Below each resource will be outlined, along with its API calls:
 
