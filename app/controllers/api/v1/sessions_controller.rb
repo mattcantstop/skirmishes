@@ -11,15 +11,4 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
-  private
-
-  def find_user
-    login = params[:username] || params[:email]
-    if login.include?('@')
-      @user = User.find_by_email(login)
-    else
-      @user = User.find_by_username(login)
-    end
-  end
-
 end
