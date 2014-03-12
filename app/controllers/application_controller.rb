@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :current_user, :only => [ :show, :update, :destroy ]
 
   def current_user
-    @user ||= User.find(params[:id])
+    @user ||= User.find_by_authentication_token(params[:authentication_token])
   end
 
 end

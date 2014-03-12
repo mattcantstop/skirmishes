@@ -61,7 +61,6 @@ describe Api::V1::UsersController, :type => :request do
     before { post :create, new_user }
 
     it "creates a user successfully with good params" do
-binding.pry
       response.status.should eql(201)
     end
 
