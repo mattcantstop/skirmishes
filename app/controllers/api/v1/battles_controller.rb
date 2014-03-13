@@ -17,7 +17,7 @@ class Api::V1::BattlesController < ApplicationController
   private
 
   def battle_params
-    params.require(:battle).permit(:notes, :user_id, :war_id)
+    params.require(:battle).permit(:notes, :winner_id, :war_id)
   end
 
 end
