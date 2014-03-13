@@ -34,6 +34,7 @@ class Api::V1::WarsController < Api::V1::BaseController
   end
 
   def war_params
+binding.pry
     params.require(:war).permit(:name, :owner_id, :is_private, :open_registration, :ending_date, :ending_score, :booty, :is_complete, :winner_id)
   end
 end
