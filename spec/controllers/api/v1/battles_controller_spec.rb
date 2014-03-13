@@ -15,7 +15,7 @@ describe Api::V1::BattlesController, :type => :request do
 
   context "#create" do
 
-    before { post :create, :battle => new_battle }
+    before { post :create, :war_id => war.id, :user_id => user.id, :battle => new_battle }
 
     it "responds with a 201 upon sucessful create" do
       response.status.should eq(201)
