@@ -7,6 +7,9 @@ Skirmishes::Application.routes.draw do
       resources :users do
         resources :wars
       end
+      resources :wars do
+        resources :battles
+      end
     end
   end
 
