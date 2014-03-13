@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307142001) do
+ActiveRecord::Schema.define(version: 20140313011700) do
+
+  create_table "battles", force: true do |t|
+    t.integer  "winner_id"
+    t.integer  "user_id"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                default: "",    null: false

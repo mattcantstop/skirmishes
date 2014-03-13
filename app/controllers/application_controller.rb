@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
     @user ||= User.find_by_authentication_token(params[:authentication_token])
   end
 
+  def authenticate_user
+    @current_user = User.find_by_authentication_token(params[:token])
+    unless @current_user
+      respond_with({:error => "Token is invalid." })
+    end
+  end
+
 end
