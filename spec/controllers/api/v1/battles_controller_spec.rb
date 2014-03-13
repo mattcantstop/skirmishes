@@ -3,8 +3,9 @@ require 'spec_helper'
 describe Api::V1::BattlesController, :type => :request do
   render_views
 
-  let!(:user) { FactoryGirl.create(:user) }
-  let!(:war)  { FactoryGirl.create(:war, :owner_id => user.id) }
+  let!(:user)   { FactoryGirl.create(:user) }
+  let!(:war)    { FactoryGirl.create(:war, :owner_id => user.id) }
+  let!(:battle) { FactoryGirl.create(:battle) }
   let!(:new_battle) {
     {
       :notes   => "21-15",
@@ -19,6 +20,16 @@ describe Api::V1::BattlesController, :type => :request do
 
     it "responds with a 201 upon sucessful create" do
       response.status.should eq(201)
+    end
+
+  end
+
+  context "#show" do
+
+    before { get :show, :war_id => war.id, :id => battle.id }
+
+    it "returns the battle with a 200 status" do
+      response.status.should eq(200)
     end
 
   end
