@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   validates :username, :uniqueness => { :case_sensitive => false }
 
-  has_many :wars
+  has_many :wars, foreign_key: :owner_id
 
   private
 
