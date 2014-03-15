@@ -3,6 +3,7 @@ class Api::V1::WarsController < Api::V1::BaseController
   before_filter :set_war, :only => [:show, :update, :destroy]
 
   def show
+    @scores = @war.battles
     render 'wars/show.rabl'
   end
 
