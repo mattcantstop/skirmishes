@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313020149) do
+ActiveRecord::Schema.define(version: 20140317142340) do
 
   create_table "battles", force: true do |t|
     t.integer  "winner_id"
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 20140313020149) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+
+  create_table "users_wars", id: false, force: true do |t|
+    t.integer "user_id", null: false
+    t.integer "war_id",  null: false
+  end
 
   create_table "wars", force: true do |t|
     t.string   "name"
