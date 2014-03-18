@@ -27,6 +27,8 @@ describe Api::V1::WarsController, :type => :request do
     }
   }
 
+  let!(:joining_user) { FactoryGirl.create(:user) }
+
   context "#show" do
 
     it "returns 200 status when war is found" do
@@ -63,10 +65,23 @@ describe Api::V1::WarsController, :type => :request do
 
     before { delete :destroy, :id => war.id, :user_id => user.id, :war => deleted_war }
 
-    it "should return a 204 status on delete" do
+    it "returns a 204 status on delete" do
       expect(response.status).to eq(204)
     end
 
   end
 
+  context "#join" do
+    before { post :join, :id => war.id, :user_id => joining_user.id }
+
+    it "responds with a 200 upon successfully joining a war" do
+      expect(response.status).to eq(200)
+    end
+
+  end
+
 end
+
+
+
+

@@ -8,6 +8,7 @@ Skirmishes::Application.routes.draw do
         resources :wars
       end
       resources :wars do
+        post '/join/:user_id', to: 'wars#join'
         resources :battles
       end
     end
