@@ -27,7 +27,6 @@ describe Api::V1::WarsController, :type => :request do
     }
   }
 
-  let!(:joining_user) { FactoryGirl.create(:user) }
 
   context "#show" do
 
@@ -72,9 +71,13 @@ describe Api::V1::WarsController, :type => :request do
   end
 
   context "#join" do
-    before { post :join, :id => war.id, :user_id => joining_user.id }
+    before do
+      let!(:joining_user) { FactoryGirl.create(:user) }
+      post :join, :id => war.id, :user_id => joining_user.id
+    end
 
     it "responds with a 200 upon successfully joining a war" do
+
       expect(response.status).to eq(200)
     end
 
