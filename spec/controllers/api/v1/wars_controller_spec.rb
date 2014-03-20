@@ -71,8 +71,8 @@ describe Api::V1::WarsController, :type => :request do
   end
 
   context "#join" do
-    before do
       let!(:joining_user) { FactoryGirl.create(:user) }
+    before do
       post :join, :id => war.id, :user_id => joining_user.id
     end
 
