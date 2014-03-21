@@ -28,6 +28,11 @@ class Api::V1::WarsController < Api::V1::BaseController
     end
   end
 
+  def join
+    core_value = CoreValue.find_or_create_by_value(v, :created_by => current_user.id)
+    current_user.core_values << core_value
+  end
+
   private
 
   def set_war

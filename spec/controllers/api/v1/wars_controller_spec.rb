@@ -71,9 +71,11 @@ describe Api::V1::WarsController, :type => :request do
   end
 
   context "#join" do
-      let!(:joining_user) { FactoryGirl.create(:user) }
+
+    let!(:joining_user) { FactoryGirl.create(:user, :email => "onehotmess@gmail.com", :username => "secondhotmess") }
+
     before do
-      post :join, :id => war.id, :user_id => joining_user.id
+      post :join, :war_id => war.id, :user_id => joining_user.id
     end
 
     it "responds with a 200 upon successfully joining a war" do
