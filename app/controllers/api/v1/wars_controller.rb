@@ -29,8 +29,8 @@ class Api::V1::WarsController < Api::V1::BaseController
   end
 
   def join
-    core_value = CoreValue.find_or_create_by_value(v, :created_by => current_user.id)
-    current_user.core_values << core_value
+    participant = Participant.find_or_create_by(:user_id => current_user.id, :war_id => war.id)
+    @war.participants << participant
   end
 
   private
